@@ -1,0 +1,15 @@
+<p>
+  <strong> Tytuł: </strong>
+  <%= @article.title %>
+</p>
+
+<p>
+  <strong> Treść </strong>
+  <%= @article.text %>
+</p>
+
+<%= link_to "back to all", articles_path %>
+<%= link_to "edit", edit_article_path(@article) %>
+<%= link_to "delete", article_path(@article),
+                      method: :delete,
+                      data: { confirm: "Are you sure"} %>
