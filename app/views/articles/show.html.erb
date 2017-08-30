@@ -1,5 +1,5 @@
 <p>
-  <strong> Tytuł: </strong>
+  <h2><strong> Tytuł: </strong></h2>
   <%= @article.title %>
 </p>
 
@@ -7,6 +7,19 @@
   <strong> Treść </strong>
   <%= @article.text %>
 </p>
+
+<% if @next_article %>
+  <%= link_to "Next", article_path(@next_article) %>
+<% end %>
+
+<h2> Comments </h2>
+
+<%= render @article.comments.order(created_at: :desc) %>
+
+<h2> Add comment </h2>
+
+<%= render "comments/form" %>
+
 
 <%= link_to "back to all", articles_path %>
 <%= link_to "edit", edit_article_path(@article) %>

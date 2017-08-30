@@ -1,10 +1,11 @@
 class ArticlesController < ApplicationController
+  http_basic_authenticate_with name: "admin", password: "secret", except: [:index, :show]
+
   def new
     @article = Article.new
   end
 
   def create
-    article_params = params.require(:article).permit(:title, :text)
     @article = Article.create(article_params)
 
     if @article.new_record?
@@ -16,6 +17,8 @@ class ArticlesController < ApplicationController
 
   def show
     @article = Article.find(params[:id])
+    @comment = Comment.new(article_id: @article.id)
+    @next_article = @article.next_article
   end
 
   def index
@@ -28,8 +31,8 @@ class ArticlesController < ApplicationController
   end
 
   def update
-    article_params = params.require(:article).permit(:title, :text)
     @article = Article.find(params[:id])
+
     if @article.update(article_params)
       redirect_to @article
     else
@@ -44,7 +47,9 @@ class ArticlesController < ApplicationController
     redirect_to articles_path
   end
 
-  def next
-    
+  private
+
+  def article_params
+    params.require(:article).permit(:title, :text)
   end
 end
