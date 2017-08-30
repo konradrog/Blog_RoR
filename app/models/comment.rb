@@ -3,6 +3,6 @@ class Comment < ApplicationRecord
   validates :body, presence: true, length: { minimum: 6, maximum: 500 }
 
   belongs_to :article
+  belongs_to :ip, optional: true
 
-  
 end
