@@ -9,6 +9,12 @@
   </head>
 
   <body>
+    <% if current_admin %>
+      <p> shut up and dance with me </p>
+      <%= link_to "Sing out", "/logout", method: :delete %>
+    <% else %>
+      <%= link_to "sing in", "/login" %>
+    <% end %>
     <%= yield %>
   </body>
 </html>
