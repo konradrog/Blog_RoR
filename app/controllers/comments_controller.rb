@@ -1,14 +1,14 @@
 class CommentsController < ApplicationController
   http_basic_authenticate_with name: "admin", password: "secret", only: [:destroy]
 
-
+  
   def create
     @article = Article.find(params[:article_id])
     @comment = Comment.new(article_id: @article.id)
     @comment.attributes = comment_params
-    commenter = comment_params[:commenter]
 
     if @comment.save
+      cookies[:commenter] = @comment.commenter
       redirect_to article_path(@article)
     else
       render "articles/show"
