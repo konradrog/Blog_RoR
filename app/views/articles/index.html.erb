@@ -2,13 +2,4 @@
 <%= link_to "home page", root_path %>
 <%= link_to "new article", new_article_path %>
 
-<% @articles.each do |article| %>
-  <div>
-    <p>
-      <strong> Tytuł: </strong>
-      <%= article.title %>
-
-      <%= link_to "show more", article_path(article) %>
-    </p>
-  </div>
-<% end %>
+<%= render @articles %>

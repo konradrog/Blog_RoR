@@ -7,6 +7,7 @@ class SessionsController < ApplicationController
       if admin.nil?
         render
       else
+        flash[:notice] = "Gratki, you're in... ^^"
         session[:admin_id] = admin.id
         redirect_to "/"
       end
