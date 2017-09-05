@@ -2,4 +2,10 @@
 <%= link_to "home page", root_path %>
 <%= link_to "new article", new_article_path %>
 
+<%= form_tag "/search", method: "get" do %>
+  <%= label_tag :q, "Search for: " %>
+  <%= text_field_tag :q, params[:q], placeholder: "Search for ..." %>
+  <%= submit_tag "Search" %>
+<% end %>
+
 <%= render @articles %>

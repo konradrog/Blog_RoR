@@ -1,5 +1,5 @@
 class ArticlesController < ApplicationController
-  before_action :authenticate_admin, except: [:index, :show]
+  before_action :authenticate_admin, except: [:index, :show, :search]
   # layout "simpled"
 
   def new
@@ -48,6 +48,11 @@ class ArticlesController < ApplicationController
     article.destroy
 
     redirect_to articles_path
+  end
+
+  def search
+    @articles = Article.search(params[:q])
+    render :index
   end
 
   private
