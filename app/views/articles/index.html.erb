@@ -5,6 +5,12 @@
 <%= form_tag "/search", method: "get" do %>
   <%= label_tag :q, "Search for: " %>
   <%= text_field_tag :q, params[:q], placeholder: "Search for ..." %>
+
+  <%= radio_button_tag :type, "simple", params[:type] == "simple" || params[:type] == nil %>
+  <%= label_tag :type_simple, "Simple" %>
+  <%= radio_button_tag :type, "extended", params[:type] == "extended" %>
+  <%= label_tag :type_extended, "Extended" %>
+
   <%= submit_tag "Search" %>
 <% end %>
 
