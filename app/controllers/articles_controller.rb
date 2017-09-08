@@ -1,5 +1,5 @@
 class ArticlesController < ApplicationController
-  before_action :authenticate_admin, except: [:index, :show, :search]
+  before_action :authenticate_admin, except: [:index, :show, :search, :preview]
   # layout "simpled"
 
   def new
@@ -53,6 +53,11 @@ class ArticlesController < ApplicationController
   def search
     @articles = Article.search(params[:q])
     render :index
+  end
+
+  def preview
+    article = Article.find(params[:id])
+    render json: { text: article.text}
   end
 
   private

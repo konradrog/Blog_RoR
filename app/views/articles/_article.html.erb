@@ -2,7 +2,9 @@
   <p>
     <strong> Tytuł: </strong>
     <%= article.title %>
-
     <%= link_to "show more", article_path(article) %>
+    <%= link_to "preview", preview_article_path(article), class: "preview", data: { id: article.id } %>
+    <p id="preview-<%=article.id%>" style="display: none">
+    </p>
   </p>
 </div>
